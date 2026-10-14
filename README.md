@@ -4,7 +4,7 @@
 Mini aplicación web de cotización y validación de datos desarrollada en Java utilizando JSP y ejecutada sobre el servidor Apache Tomcat. El proyecto integra operaciones lógicas aplicando métodos de las clases `String` y `Math`.
 
 # Integrantes y Distribución de Tareas
-* **Borda Ojeda Sebastian:** 
+* **Borda Ojeda Sebastian:** Coordinación del proyecto, configuración de Maven y Tomcat, e integración del código en GitHub.
 * **Basurco Castro Adrian:** Validaciones de datos y transformaciones con la clase `String` en `resultado.jsp`
 * **Illescas Carbajal Ammy:** Cálculos, operaciones y redondeos con la clase `Math` en `resultado.jsp`.
 * **Illescas Carbajal Jorge Adrian:** Diseño, maquetación del formulario web `index.jsp` y `estilos CSS`.
