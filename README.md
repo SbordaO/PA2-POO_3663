@@ -18,3 +18,4 @@ Mini aplicación web de cotización y validación de datos desarrollada en Java 
 5. Ingresar los datos solicitados y presionar el botón de envío para procesar los resultados en **`resultado.jsp`**.
 
 # Enlace del Video de Exposición
+https://youtu.be/trsvLsFt7Ak
