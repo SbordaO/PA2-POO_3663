@@ -92,10 +92,10 @@
 
                     } else {
 
-/*
+<%--
  * COMPAÑERO B:
  * Cálculos y redondeos con Math
- */
+--%>
 
                         // 6. CÁLCULOS
                         subtotal = precio * cantidad;
@@ -118,3 +118,198 @@
                             Math.round(montoDescuento * 100.0) / 100.0;
 
                         valido = true;
+
+                    }
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            error = "Ingresa números válidos en precio, cantidad y descuento.";
+        }
+    }
+
+    // Formatear importes con dos decimales
+    String subtotalFormato = String.format(
+        java.util.Locale.US, "%.2f", subtotal);
+
+    String descuentoFormato = String.format(
+        java.util.Locale.US, "%.2f", montoDescuento);
+
+    String totalFormato = String.format(
+        java.util.Locale.US, "%.2f", total);
+
+    String precioFormato = String.format(
+        java.util.Locale.US, "%.2f", precio);
+
+    String porcentajeFormato = String.format(
+        java.util.Locale.US, "%.2f", descuento);
+%>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CotizaFácil - Resultado</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+        .contenedor {
+            max-width: 580px;
+            margin: 60px auto;
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px #00000012;
+        }
+
+        h1 {
+            color: #2563eb;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .fila {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .fila span:first-child {
+            color: #64748b;
+        }
+
+        .fila strong {
+            text-align: right;
+            overflow-wrap: anywhere;
+        }
+
+        .total {
+            margin-top: 20px;
+            padding: 20px;
+            background: #eff6ff;
+            border-radius: 9px;
+            text-align: center;
+        }
+
+        .total p {
+            margin: 0;
+            color: #475569;
+        }
+
+        .total h2 {
+            color: #2563eb;
+            font-size: 32px;
+            margin: 10px 0 0;
+        }
+
+        .error {
+            padding: 20px;
+            background: #fef2f2;
+            color: #b91c1c;
+            border-radius: 8px;
+        }
+
+        .boton {
+            display: block;
+            margin-top: 25px;
+            padding: 13px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background: #2563eb;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .boton:hover {
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 600px) {
+            .contenedor {
+                margin: 20px 12px;
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>CotizaFácil</h1>
+
+    <% if (valido) { %>
+
+        <h2>Resultado de la cotización</h2>
+
+        <div class="fila">
+            <span>Producto:</span>
+            <strong><%= escaparHtml(producto) %></strong>
+        </div>
+
+        <div class="fila">
+            <span>Precio unitario:</span>
+            <strong>S/ <%= precioFormato %></strong>
+        </div>
+
+        <div class="fila">
+            <span>Cantidad:</span>
+            <strong><%= cantidad %></strong>
+        </div>
+
+        <div class="fila">
+            <span>Subtotal:</span>
+            <strong>S/ <%= subtotalFormato %></strong>
+        </div>
+
+        <div class="fila">
+            <span>Descuento aplicado:</span>
+            <strong><%= porcentajeFormato %>%</strong>
+        </div>
+
+        <div class="fila">
+            <span>Monto descontado:</span>
+            <strong>S/ <%= descuentoFormato %></strong>
+        </div>
+
+        <div class="total">
+            <p>Total a pagar</p>
+            <h2>S/ <%= totalFormato %></h2>
+        </div>
+
+    <% } else { %>
+
+        <h2>No se pudo generar la cotización</h2>
+
+        <div class="error">
+            <strong>Error:</strong>
+            <p><%= escaparHtml(error) %></p>
+        </div>
+
+    <% } %>
+
+    <a class="boton" href="index.jsp">
+        Nueva cotización
+    </a>
+
+</div>
+
+</body>
+</html>
